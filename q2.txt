@@ -1,0 +1,12 @@
+
+git status
+git add 
+git commit
+git push
+git checkout     
+git branch
+git clone
+git pull
+git push
+
+added second push
