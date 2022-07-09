@@ -1,7 +1,5 @@
-console.log("test001");
-dadaa
-HGDCHGC
-HSDAJHDWA 
-main branch q1
-
-third_branch_push
+let loading = 0;
+while(loading < 100){
+    console.log('website is still loading');
+loading ++;
+}
