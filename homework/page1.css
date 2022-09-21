@@ -1,0 +1,117 @@
+h1 {
+    text-align: center;
+}
+
+
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.div-inline {
+    display: flex;
+    justify-content: center;
+}
+
+.div-block {
+    display: flex;
+    justify-content: center;
+}
+
+.inline {
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+}
+
+.block {
+    margin: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.register-button {
+    margin: 20px;
+    width: 300px;
+    height: 30px;
+    background-color: rgb(100, 100, 209);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.Sign-in-button {
+    margin: 20px;
+    width: 300px;
+    height: 30px;
+    background-color: rgb(80, 177, 80);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+span {
+    background-color: rgb(100, 100, 209);
+    border-radius: 5px;
+    padding: 2px 5px 3px 5px;
+    color: white;
+}
+
+p {
+    display: inline;
+}
+
+.div-checkbox {
+    display: inline-block;
+    width: 25%;
+}
+
+.div-p {
+    display: inline-block;
+    width: 72%;
+}
+
+input {
+    padding-left: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+input:focus {
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+    border-color: transparent;
+    outline: 1px solid grey;
+}
+
+hr {
+    border: 1px solid black;
+    border-top: none;
+}
+
+.hr-1 {
+    margin-top: 200px;
+    width: 70%;
+}
+
+.hr-2 {
+    width: 30%;
+}
+
+p {
+    display: block;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
