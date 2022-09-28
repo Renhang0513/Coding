@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select id="mySelect"></select>
+    <select id="mySelect1"></select>
+
+
+    <script>
+        const state = {
+            a: "apple",
+            b: "banana",
+            c: "city",
+            d: "dom",
+            e: "end",
+            f: "forEach",
+            g: 'gold',
+        };
+
+        const mySelect = document.getElementById('mySelect');
+        const mySelect1 = document.getElementById('mySelect1');
+        const stateOption = Object.entries(state)
+        for (let fruit of stateOption) {
+            let newOption = document.createElement('option');
+            newOption.textContent = fruit[0];
+            mySelect.appendChild(newOption);
+        }
+        for (let fruit of stateOption) {
+            let newOption = document.createElement('option');
+            newOption.textContent = fruit[1];
+            mySelect1.appendChild(newOption);
+        }
+        mySelect.addEventListener('click', e => {
+            mySelect1.value = state[e.target.value]
+        }
+        );
+        mySelect1.addEventListener('click', e => {
+            mySelect.value = e.target.value[0]
+        }
+        );
+    </script>
+</body>
+
+</html>
