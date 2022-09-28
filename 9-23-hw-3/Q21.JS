@@ -1,23 +1,25 @@
-
-
-const nums = [1,2,3]
-
-function subsets(nums){
-    const result=[];
+let arr=[1,2,3]
+function combu(s){
+    var buff = [];
+    var res = [];
     const ans=[];
-    function dfs(i,nums,slate){
-        if(i === nums.length){
-            result.push(slate.slice());
-            return;
+    for (i=0;i<s.length;i++){
+        buff = [s[i]];
+        var index=0;
+        while(res[index]){
+            buff.push(''+res[index]+s[i]);
+            index++;
         }
-        dfs(i + 1, nums,slate);
-        slate.push(nums[i]);
-        dfs(i+1, nums,slate);
-        slate.pop();
+        res = res.concat(buff);
     }
-    dfs(0,nums,[]);
 
-    return result; 
-}
-
-console.log(subsets(nums));
+    for(let i = 0;i < res.length;i ++){
+        if(res[i].length===2){
+            ans.push(res[i])
+        }
+    }
+    return ans;
+    }
+    
+    
+    console.log(combu(arr));
