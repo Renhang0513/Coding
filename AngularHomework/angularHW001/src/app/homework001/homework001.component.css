@@ -1,0 +1,40 @@
+.big-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.small-div {
+    display: inline-block;
+    width: 46%;
+    border-radius: 20px;
+
+}
+
+h1 {
+    font-weight: normal;
+}
+
+button {
+    width: 100px;
+    height: 45px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+
+@media (max-width:1200px) {
+
+    .small-div {
+        width: 80%;
+    }
+}
