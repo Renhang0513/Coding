@@ -1,0 +1,20 @@
+<h1>User Details</h1>
+<table>
+    <span>Search firstName</span>
+    <!-- <input type="text" [(ngModel)]="keyWord"> -->
+    <input type="text" [(ngModel)]="keyWord">
+    <tr class="table-title">
+        <td (click)="firstNamefn()">First Name</td>
+        <td>Last Name</td>
+        <td>Department</td>
+        <td>Salary</td>
+    </tr>
+    <tr *ngFor="let title of getLists | filter:keyWord | reverse: sorter">
+        <td>{{title.firstName}}</td>
+        <td>{{title.lastName}}</td>
+        <td>{{title.department}}</td>
+        <td>{{title.salary}}</td>
+        <td>{{title.doj | date: 'MM/dd/yyyy'}}</td>
+    </tr>
+    <button (click)="resetButton()">Click me</button>
+</table>
