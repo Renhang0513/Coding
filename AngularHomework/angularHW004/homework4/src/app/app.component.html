@@ -1,0 +1,6 @@
+<li><a [routerLink]="['books']" (click)="wishListHome()">Home</a></li>
+<li><a [routerLink]="['wishlist']" (click)="wishListSwitch()">WishList</a></li>
+<div class="main-div" *ngIf="showWish">
+  <app-wishlist class="main-wish"></app-wishlist>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,13 @@
+<input type="text" (keyup)="onSearch($event)">
+<div *ngFor="let book of books$ | async">
+    <ul>
+        <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}">
+        <div class="inline-div">
+            <li>{{book.volumeInfo.title}}</li>
+            <li>{{book.volumeInfo.publisher}}</li>
+            <li>{{book.volumeInfo.publishedDate}}</li>
+            <li class="description">{{book.volumeInfo.description}}</li>
+            <button value="{{book.volumeInfo.title}}" (click)="addBookFn($event)">Add</button>
+        </div>
+    </ul>
+</div>

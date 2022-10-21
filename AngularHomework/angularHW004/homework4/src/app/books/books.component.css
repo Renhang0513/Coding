@@ -1,0 +1,18 @@
+img {
+    display: inline-block;
+}
+
+.inline-div {
+    display: inline-block;
+    width: 600px;
+}
+
+.description {
+    overflow: scroll;
+    height: 90px;
+}
+
+li {
+    margin: 10px;
+    list-style: none;
+}

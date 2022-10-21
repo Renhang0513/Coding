@@ -1,0 +1,9 @@
+.main-wish {
+    position: fixed;
+    right: 0;
+    margin-right: 300px;
+}
+
+.main-div {
+    position: relative;
+}
