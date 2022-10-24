@@ -1,0 +1,15 @@
+img {
+    width: 200px;
+}
+
+button {
+    width: 40%;
+    height: 50px;
+    border: none;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: rgb(168, 168, 168);
+    cursor: pointer;
+}

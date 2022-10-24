@@ -1,0 +1,12 @@
+<div class="big-div">
+    <div class="small-div" *ngFor="let pokemon of pokemons">
+        <img src="{{pokemon.img}}" alt="">
+        <ul>
+            <li>#{{pokemon.id}}</li>
+            <li>Name: {{pokemon.name}}</li>
+            <li>Weight: {{pokemon.weight}}</li>
+            <li>Types: {{pokemon.types}}</li>
+        </ul>
+        <button value="{{pokemon.id}}" (click)="onOpenDialogClick($event)">Select Me!</button>
+    </div>
+</div>
