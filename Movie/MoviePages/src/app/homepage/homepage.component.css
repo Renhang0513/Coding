@@ -1,0 +1,35 @@
+img {
+    width: 300px;
+    border-radius: 5px;
+}
+
+span {
+    display: block;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.big-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(41, 40, 40);
+    max-width: 1600px;
+}
+
+.small-div {
+    display: inline-block;
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    background-color: rgb(28, 27, 27);
+    border-radius: 5px;
+}
+
+.bigest-div {
+    background-color: rgb(41, 40, 40);
+    padding: 60px 300px 60px 300px;
+    display: flex;
+    justify-content: center;
+}
