@@ -1,17 +1,16 @@
-<div>
-    <nav>
+<div class="big-div">
+    <nav class="navtop">
         <label class="logo" (click)="goToLoginPage('homepage')"><img class="title" src="../../assets/potatoMovie.png"
                 alt=""></label>
-
         <ul>
             <li>Movies</li>
-            <li>TV</li>
-            <li>Saved list</li>
+            <li (click)="goToLoginPage('movieItem')">Movie Items</li>
+            <li (click)="goToLoginPage('register')">Register</li>
             <img src="https://as1.ftcdn.net/v2/jpg/01/27/72/28/1000_F_127722883_DD4Sp3V30YxvYut3sRsaJqv7TKloEuyH.jpg"
                 alt="">
             <input type="text">
-            <li *ngIf="isNotLogin" (click)="goToLoginPage('login')">Login</li>
-            <li *ngIf="isLogin" (click)="goToLoginPage('login')">logged in </li>
+            <li *ngIf="!isLogin[0]" (click)="goToLoginPage('login')">Login</li>
+            <li *ngIf="isLogin[0]" (click)="goToLoginPage('login')">logged in </li>
         </ul>
     </nav>
 </div>

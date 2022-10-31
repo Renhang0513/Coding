@@ -1,28 +1,46 @@
 <div class="login-big-div">
     <div class="login">
-        <h1>Welcome to Potato Movie!</h1>
+        <h1>Register</h1>
+        <form [formGroup]="myForm" class="mat-form">
+            <mat-form-field class="mat-full-width">
+                <input matInput placeholder="email" formControlName="email" (click)="emailHintMSGReset()">
+                <mat-error *ngIf="email.invalid && email.touched">
+                    Please Enter valid email
+                </mat-error>
+            </mat-form-field>
+            <mat-hint *ngIf="emailHint" align="end">
+                <p class="hintMSG">{{emailHintMSG}}</p>
+            </mat-hint>
+            <mat-form-field class="mat-full-width">
+                <input matInput placeholder="password" formControlName="password">
+                <mat-hint align="end">Must have one letter</mat-hint>
+                <mat-error *ngIf="password.invalid && password.touched">
+                    Please Enter valid password
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="mat-full-width">
+                <input matInput placeholder="confirmPassword" formControlName="confirmPassword" (click)="confirmPWMSGReset()">
+                <mat-hint *ngIf="confirmPWHint" align="end">
+                    <p class="hintMSG">Password does not match</p>
+                </mat-hint>
+            </mat-form-field>
+        
+            <mat-form-field class="mat-full-width">
+                <mat-select placeholder="Select your role" formControlName="role">
+                    <mat-option value="User">User</mat-option>
+                    <mat-option value="Admin">Admin</mat-option>
+                    <mat-option value="Super">Super</mat-option>
+                </mat-select>
+                <mat-error *ngIf="role.invalid && role.touched">
+                    Your Must select your role.
+                </mat-error>
+            </mat-form-field>
+            <p>Already registered? <a class="signup" (click)="goToSignInPage()"> Sign in now.</a></p>
 
-        <span class="input-type">Enter your Email</span>
-        <input class="input-block" type="email" placeholder="E-mail">
-        <span class="input-type">Select your role</span>
-        <div class='radio-button-div'>
-            <input class="radio-button" type="radio">Member
-            <input class="radio-button" type="radio">Admin
-        </div>
-        <span class="input-type">Create Username</span>
-        <input class="input-block" type="text" placeholder="Username">
-        <span class="input-type">Enter your password</span>
-        <input class="input-block" type="password" placeholder="Password">
-        <span class="input-type">Enter your password</span>
-        <input class="input-block" type="password" placeholder="Confirm Password">
-        <br>
-        <br>
-        <button>Sign In</button>
-        <br>
-        <br>
-        <p>Already registered? Go to<a routerLink="/login"> Login page</a></p>
-        <br>
-        <p>This page is created by PotatoMovie. <a href=""> Learn more.</a></p>
+            <button class="mat-button" mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="loginCheck()">Lets
+                go</button>
+            </form>
     </div>
     <div class="div-footer">
         <ul>

@@ -9,12 +9,17 @@ import { MovielistService } from '../movielist.service';
 export class HomepageComponent implements OnInit {
 
   constructor(private MovielistService:MovielistService) { }
-lists:any=[];
 
+movieDisplayList:any=[]
   ngOnInit(): void {
-    this.lists=this.MovielistService.movieLists();
-    console.log(this.lists);
-    
+    this.MovielistService.homePageMovieList$.subscribe(res=>{
+      this.movieDisplayList=res;
+    })
   }
+
+homePageMoviesChange(){
+this.MovielistService.homePageMovieList.length=0;
+this.MovielistService.homePageMoviesChange();
+}
 
 }

@@ -1,13 +1,26 @@
 <div class="login-big-div">
     <div class="login">
-        <h1>Sign In</h1>
-        <input class="input-block" type="text" placeholder="Username">
-        <input class="input-block" type="Password" placeholder="Password">
-        <button (click)="loginCheck()">Sign In</button>
-        <br>
-        <p>New to PotatoMovie? <a routerLink="/register"> Register now</a></p>
-        <br>
-        <p>This page is created by PotatoMovie. <a href=""> Learn more.</a></p>
+        <form [formGroup]="myForm" class="mat-form">
+            <h1>Sign in</h1>
+            <mat-form-field class="mat-full-width">
+                <input matInput placeholder="email" formControlName="email">
+                <mat-error *ngIf="email.invalid && email.touched">
+                    <p class="matErrorMSG">Please enter valid Email.</p>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="mat-full-width">
+                <input matInput placeholder="password" formControlName="password">
+                <mat-error *ngIf="password.invalid && password.touched">
+                    <p class="matErrorMSG">Wrong password,please try again.</p>
+                </mat-error>
+            </mat-form-field>
+        
+            <p>New to Potato Movies? <a class="signup" (click)="goToRegisterPage()"> Sign up now.</a></p>
+        
+            <button class="mat-button" mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="loginCheck()">Lets
+                go</button>
+        </form>
     </div>
     <div class="div-footer">
         <ul>

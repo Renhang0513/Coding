@@ -1,8 +1,12 @@
-nav {
-    background-image: linear-gradient(rgb(0, 0, 0), rgb(41, 40, 40));
+.big-div {
+    position: absolute;
+    font-family: arial;
+}
+
+.navtop {
+    /* background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(41, 40, 40, 0)); */
     height: 80px;
-    width: 100vw;
-    position: relative;
+    width: 99vw;
     display: flex;
     align-items: center;
     justify-content: end;
@@ -33,7 +37,10 @@ nav ul li {
     margin: 0px 20px;
     border-radius: 10px;
     padding: 0px 20px;
-    color: rgb(217, 217, 217);
+    color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: bolder;
+        border: 1px solid rgb(93, 93, 93);
 }
 
 

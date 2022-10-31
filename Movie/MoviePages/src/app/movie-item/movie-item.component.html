@@ -1,0 +1,19 @@
+<div class="bigest-div">
+    <div class="big-div">
+        <div class="small-div" *ngFor="let movie of moviesDisplay">
+            <div class="img-div">
+                <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}">
+            </div>
+            <div class="description-div">
+                <span class="movie-title"><a href="">{{movie.title}}</a></span>
+                <span>{{movie.release_date}}</span>
+            </div>
+            <span class="rating">{{movie.vote_average}}</span>
+        </div>
+        <div *ngIf="scrollLimitReached">
+            <h1 class="scrollLimit">You reached the scroll limit</h1>
+        </div>
+    </div>
+</div>
+<div infiniteScroll [infiniteScrollDistance]="0.2" [infiniteScrollThrottle]="1000" (scrolled)="infiniteScrollFn()">
+</div>

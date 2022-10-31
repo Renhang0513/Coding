@@ -1,64 +1,72 @@
 import { Injectable } from '@angular/core';
-import { of,observable } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable,map,of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovielistService {
 
-  constructor() { }
+isLogin=[false];
+islogin$=of(this.isLogin)
+
+  constructor(private httpClient:HttpClient) {
+    this.getMovies()
+    this.homePageMoviesChange()
+
+   }
 
 
 
-//--test area
-
-//=-----
 
 
-  movieLists(){
-    const getLists = [
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'},
-      {title:'Fear Street', 
-      img:'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1654862502-best-horror-movies-on-netflix-fear-street-1654862476.jpg',
-      id:1,
-      year:'2020'}
-    ];
-    return getLists;
-  }
+
+baseUrl='https://api.themoviedb.org/3/movie/popular?api_key=426ab31f3c3285fdac7fa968b0dc6ae2&language=en-US&page=';
+currentPage=1;
+
+movieList:any=[];
+movieList$=of(this.movieList);
+
+homePageMovieList:any=[];
+homePageMovieList$=of(this.homePageMovieList);
+
+getMovies(){
+  return this.httpClient.get(this.baseUrl+this.currentPage)
+  .pipe(
+    map((d:any)=>{
+    return d.results;
+    })
+  ).subscribe(res=>{
+  this.movieList.push(...res)
+  this.currentPage++;
+})
+}
+
+ homePage=1;
+
+homePageMoviesChange(){
+  this.homePage++;
+if(this.homePage<20){
+  return this.httpClient.get(this.baseUrl+this.homePage)
+  .pipe(
+    map((d:any)=>{
+    return d.results;
+    })
+  ).subscribe(res=>{
+  this.homePageMovieList.push(...res)
+})
+}else{
+  this.homePage=1;
+  return this.httpClient.get(this.baseUrl+this.homePage)
+  .pipe(
+    map((d:any)=>{
+    return d.results;
+    })
+  ).subscribe(res=>{
+  this.homePageMovieList.push(...res)
+})
+}
+}
+
+
 }

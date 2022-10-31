@@ -1,15 +1,18 @@
-<div class="bigest-div">
-    <div class="big-div">
-        <div class="small-div" *ngFor="let movie of lists">
-            <div class="img-div">
-                <img src="{{movie.img}}" alt="">
-            </div>
-            <div class="description-div">
-                <span>Movie name: {{movie.title}}</span>
-                <span>Year: {{movie.year}}</span>
+<div class="backgound-div">
+    <div class="popular-movie">
+        <img class="movie-img" *ngFor="let movie of movieDisplayList"
+            src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}">
+        <div class="potato-description">
+            <div class="inner-description">
+                <h1>Unlimited movies, TV shows, and more.</h1>
+                <h2>Watch anywhere. Cancel anytime.</h2>
+                <p>Ready to watch? Enter your email to create or restart your membership.
+                </p>
+                <div class="input-div">
+                    <input type="Email">
+                    <button (click)="homePageMoviesChange()">Get Started!</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<hr>
+    </div>
