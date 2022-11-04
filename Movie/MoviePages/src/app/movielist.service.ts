@@ -14,14 +14,24 @@ islogin$=of(this.isLogin)
     this.getMovies()
     this.homePageMoviesChange()
 
+    setTimeout(() => {
+  console.log(this,this.movieList);
+    }, 1000);
+
    }
 
 
 
 
-
-
 baseUrl='https://api.themoviedb.org/3/movie/popular?api_key=426ab31f3c3285fdac7fa968b0dc6ae2&language=en-US&page=';
+
+videoBaseUrlFront='https://api.themoviedb.org/3/movie/'
+videoBaseUrlEnd='/videos?api_key=426ab31f3c3285fdac7fa968b0dc6ae2&language=en-US'
+
+movieDetailUrlFront='https://api.themoviedb.org/3/movie/'
+movieDetailUrlEnd='?api_key=426ab31f3c3285fdac7fa968b0dc6ae2&language=en-US'
+
+
 currentPage=1;
 
 movieList:any=[];
@@ -29,6 +39,8 @@ movieList$=of(this.movieList);
 
 homePageMovieList:any=[];
 homePageMovieList$=of(this.homePageMovieList);
+
+
 
 getMovies(){
   return this.httpClient.get(this.baseUrl+this.currentPage)
@@ -68,5 +80,19 @@ if(this.homePage<20){
 }
 }
 
+//---get youtube video
+getVideo(videoID:any){
+  return this.httpClient.get(this.videoBaseUrlFront+videoID+this.videoBaseUrlEnd)
+  .pipe(
+    map((d:any)=>{
+    return d.results;
+    })
+  )
+}
+//--get movie detail by ID
+
+getDetail(videoID:any){
+  return this.httpClient.get(this.movieDetailUrlFront+videoID+this.movieDetailUrlEnd)
+}
 
 }

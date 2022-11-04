@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MovielistService } from '../movielist.service';
+import { MatDialog } from '@angular/material/dialog'
+import { MoviedetailComponent } from '../moviedetail/moviedetail.component';
+
 @Component({
   selector: 'app-movie-item',
   templateUrl: './movie-item.component.html',
@@ -15,7 +18,7 @@ export class MovieItemComponent implements OnInit {
 
   moviesDisplay:any=[];
 
-  constructor(public MovielistService:MovielistService) { }
+  constructor(public MovielistService:MovielistService, private matDialog:MatDialog) { }
 
   ngOnInit(): void {
     this.MovielistService.movieList$.subscribe(res=>{
@@ -23,10 +26,7 @@ export class MovieItemComponent implements OnInit {
     })
   }
 
-
-
 //----infin scroll
-
 
 infiniteScrollFn(){
   this.currentScrolledPage++;
@@ -36,7 +36,17 @@ infiniteScrollFn(){
   }else{
     this.scrollLimitReached=true;
   }
-
 }
+
+
+
+
+//--Show movie detail
+onOpenDialogClick(id:any){
+this.matDialog.open(MoviedetailComponent,{
+ data:id.target.id
+});
+}
+
 
 }

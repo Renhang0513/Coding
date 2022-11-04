@@ -12,14 +12,14 @@ export class HeaderComponent implements OnInit {
 
   isLogin=[false];
   ngOnInit(): void {
-    this.goToLoginPage('homepage')
+    this.goToLoginPage('movieItem/movieItem')
     this.MovielistService.islogin$.subscribe(res=>{
       this.isLogin=res;
     })
   }
   goToLoginPage(login:string){
     this.router.navigate([`${login}`]);
-    console.log(this.MovielistService.isLogin);
   }
 
 }
+ 

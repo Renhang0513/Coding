@@ -16,7 +16,9 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatChipsModule }from '@angular/material/chips';
-
+import { MoviedetailComponent } from './moviedetail/moviedetail.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { MatChipsModule }from '@angular/material/chips';
     RegisterComponent,
     HomepageComponent,
     MovieItemComponent,
+    MoviedetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,8 @@ import { MatChipsModule }from '@angular/material/chips';
     MatButtonModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatDialogModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

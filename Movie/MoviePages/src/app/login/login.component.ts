@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(public MovielistService:MovielistService,private fb:FormBuilder,public useraccountService:UseraccountService,private router: Router) { }
   myForm:any;
 
-  ngOnInit(): void {
-
+  ngOnInit(): void { 
+ 
     this.myForm=this.fb.group({
       email:['',
       [Validators.required,
@@ -48,5 +48,6 @@ this.useraccountService.createdAccount.forEach(e=>{
 goToRegisterPage(){
   this.router.navigate([`${'register'}`]);
 }
+
 
 }
