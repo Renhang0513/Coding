@@ -10,7 +10,6 @@ export class UseraccountService {
 createdAccount=[
   {email:'account001@gmail.com',password:'Moviesss12312',role:'admin'},
   {email: 'sad@gmail.com', password: 'asdasd12312As', role:'admin'}
-
 ]
 
 }

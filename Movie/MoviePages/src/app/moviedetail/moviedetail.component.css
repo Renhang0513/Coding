@@ -1,4 +1,8 @@
+*{
+    padding: 0;
+    margin:0;
+}
 .dialogSize {
     width: 1200px;
-    height: 95vh;
+    height: 680px;
 }

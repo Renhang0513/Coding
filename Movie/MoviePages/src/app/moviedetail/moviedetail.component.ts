@@ -16,6 +16,9 @@ export class MoviedetailComponent implements OnInit {
   youtubeID:any;
   movieDetailRes:any;
 
+  playerConfig = {
+    autoplay: 1
+  };
   ngOnInit(): void {
    this.selectedMovieID=this.data
     console.log(this.selectedMovieID);

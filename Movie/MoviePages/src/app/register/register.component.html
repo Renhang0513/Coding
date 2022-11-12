@@ -12,7 +12,7 @@
                 <p class="hintMSG">{{emailHintMSG}}</p>
             </mat-hint>
             <mat-form-field class="mat-full-width">
-                <input matInput placeholder="password" formControlName="password">
+                <input type="password" matInput placeholder="password" formControlName="password">
                 <mat-hint align="end">Must have one letter</mat-hint>
                 <mat-error *ngIf="password.invalid && password.touched">
                     Please Enter valid password
@@ -20,7 +20,7 @@
             </mat-form-field>
         
             <mat-form-field class="mat-full-width">
-                <input matInput placeholder="confirmPassword" formControlName="confirmPassword" (click)="confirmPWMSGReset()">
+                <input type="password" matInput placeholder="confirmPassword" formControlName="confirmPassword" (click)="confirmPWMSGReset()">
                 <mat-hint *ngIf="confirmPWHint" align="end">
                     <p class="hintMSG">Password does not match</p>
                 </mat-hint>

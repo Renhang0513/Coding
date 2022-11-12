@@ -10,14 +10,11 @@ export class MovielistService {
 isLogin=[false];
 islogin$=of(this.isLogin)
 
+scrollPosition:any;
+
   constructor(private httpClient:HttpClient) {
     this.getMovies()
     this.homePageMoviesChange()
-
-    setTimeout(() => {
-  console.log(this,this.movieList);
-    }, 1000);
-
    }
 
 

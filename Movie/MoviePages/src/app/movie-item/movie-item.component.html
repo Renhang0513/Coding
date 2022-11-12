@@ -5,8 +5,9 @@
                 <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}">
             </div>
             <div class="description-div">
-                <span class="movie-title"><a id="{{movie.id}}" (click)="onOpenDialogClick($event)">{{movie.title}}</a></span>
-                <span>{{movie.release_date}}</span>
+                <span class="movie-title"><a id="{{movie.id}}" (click)="goToLoginPage($event)">{{movie.title}}</a></span>
+                <br>
+                <span>{{movie.release_date | date}}</span>
             </div>
             <span class="rating">{{movie.vote_average}}</span>
         </div>

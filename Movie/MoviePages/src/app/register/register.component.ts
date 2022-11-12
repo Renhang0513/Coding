@@ -1,88 +1,81 @@
 import { Component, OnInit } from '@angular/core';
 import { MovielistService } from '../movielist.service';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UseraccountService } from '../useraccount.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  confirmPWHint = false;
+  emailHint = false;
 
-confirmPWHint=false;
-emailHint=false;
+  emailHintMSG = 'This email is already registered';
+  confirmPWHintMSG = 'Password does not match';
 
-emailHintMSG='This email is already registered';
-confirmPWHintMSG='Password does not match';
-
-
-
-  constructor(public MovielistService:MovielistService,private fb:FormBuilder,public useraccountService:UseraccountService,private router: Router) { }
-  myForm:any;
+  constructor(
+    public MovielistService: MovielistService,
+    private fb: FormBuilder,
+    public useraccountService: UseraccountService,
+    private router: Router
+  ) {}
+  myForm: any;
 
   ngOnInit(): void {
-
-    this.myForm=this.fb.group({
-      email:['',
-      [Validators.required,
-        Validators.email,
-      ]],
-      password:['',[
-        Validators.required,
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
-      ]],
-      confirmPassword:['',[
-        Validators.required,
-      ]],
-      role:['',[
-        Validators.required
-      ]]
-    })
-
+    this.myForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        ],
+      ],
+      confirmPassword: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+    });
   }
-  get email(){
+  get email() {
     return this.myForm.get('email');
   }
-  get password(){
+  get password() {
     return this.myForm.get('password');
   }
-  get confirmPassword(){
+  get confirmPassword() {
     return this.myForm.get('confirmPassword');
   }
-  get role(){
+  get role() {
     return this.myForm.get('role');
   }
-  
-  loginCheck(){
-    let qualify=true;
-  if(this.myForm.value.password!==this.myForm.value.confirmPassword){
-      this.confirmPWHint=true;
-      qualify=false;
+
+  loginCheck() {
+    let qualify = true;
+    if (this.myForm.value.password !== this.myForm.value.confirmPassword) {
+      this.confirmPWHint = true;
+      qualify = false;
     }
-  this.useraccountService.createdAccount.forEach(e=>{
-       if(e.email==this.myForm.value.email){
-           this.emailHint=true;
-           qualify=false;
+    this.useraccountService.createdAccount.forEach((e) => {
+      if (e.email == this.myForm.value.email) {
+        this.emailHint = true;
+        qualify = false;
+      }
+    });
+    if (qualify) {
+      this.useraccountService.createdAccount.push(...[this.myForm.value]);
+      this.router.navigate([`${'movieItem/movieItem'}`]);
     }
-  })
-  if(qualify){
-    this.useraccountService.createdAccount.push(...[this.myForm.value])
-    this.router.navigate([`${'movieItem'}`]);
   }
-  
+  emailHintMSGReset() {
+    this.emailHint = false;
   }
-  emailHintMSGReset(){
-    this.emailHint=false;
-  }
-  confirmPWMSGReset(){
-    this.confirmPWHint=false;
+  confirmPWMSGReset() {
+    this.confirmPWHint = false;
   }
 
-  goToSignInPage(){
-    this.router.navigate([`${'login'}`]);
+  goToSignInPage() {
+    this.router.navigate([`${'login/login'}`]);
   }
-
 }
-

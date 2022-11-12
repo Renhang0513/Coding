@@ -33,7 +33,7 @@
         color: white;
         width: 900px;
         margin: 0 auto;
-        margin-top: 300px;
+        margin-top: 200px;
         text-align: center;
     }
     
@@ -65,5 +65,5 @@ input:focus {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 50px;
 }

@@ -19,6 +19,7 @@ import { MatChipsModule }from '@angular/material/chips';
 import { MoviedetailComponent } from './moviedetail/moviedetail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MovieinfosComponent } from './movieinfos/movieinfos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     HomepageComponent,
     MovieItemComponent,
     MoviedetailComponent,
+    MovieinfosComponent,
   ],
   imports: [
     BrowserModule,

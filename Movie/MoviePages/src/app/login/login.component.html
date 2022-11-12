@@ -10,7 +10,7 @@
             </mat-form-field>
         
             <mat-form-field class="mat-full-width">
-                <input matInput placeholder="password" formControlName="password">
+                <input type="password" matInput placeholder="password" formControlName="password">
                 <mat-error *ngIf="password.invalid && password.touched">
                     <p class="matErrorMSG">Wrong password,please try again.</p>
                 </mat-error>
@@ -22,14 +22,5 @@
                 go</button>
         </form>
     </div>
-    <div class="div-footer">
-        <ul>
-            <span><a href="">FAQ</a></span>
-            <span><a href="">Help Center</a></span>
-            <span><a href="">Terms of Use</a></span>
-            <span><a href="">Careers</a></span>
-            <span><a href="">About Us</a></span>
-        </ul>
 
-    </div>
 </div>
