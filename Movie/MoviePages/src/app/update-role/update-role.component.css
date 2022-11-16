@@ -1,0 +1,22 @@
+.big-div{
+    background-color: rgb(41, 40, 40);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+button {
+    height: 52px;
+    width: 240px;
+    font-size: 20px;
+    border: none;
+    background-color: #1ce783;
+    margin:10px;
+}
+button:hover{
+    cursor: pointer;
+}
+.redButton{
+    background-color: rgb(255, 104, 104);
+}

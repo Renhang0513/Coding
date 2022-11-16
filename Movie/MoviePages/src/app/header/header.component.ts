@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovielistService } from '../movielist.service';
 import { Router } from '@angular/router';
+import { UseraccountService } from '../useraccount.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public MovielistService:MovielistService,private router: Router) { }
+  constructor(public MovielistService:MovielistService,private router: Router,private useraccountservice:UseraccountService) { }
 
   isLogin=[false];
   ngOnInit(): void {
@@ -19,6 +20,18 @@ export class HeaderComponent implements OnInit {
   }
   goToLoginPage(login:string){
     this.router.navigate([`${login}`]);
+  }
+
+  logout(){
+    this.MovielistService.isLogin[0]=false;
+    this.MovielistService.isUser[0]=false;
+    this.router.navigate(['homepage']);
+  }
+
+  roleTest(){
+    console.log(this.MovielistService.isUser)
+    console.log(this.MovielistService.loggedInUserEmail)
+    console.log(this.useraccountservice.createdAccount)
   }
 
 }

@@ -20,6 +20,7 @@ import { MoviedetailComponent } from './moviedetail/moviedetail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MovieinfosComponent } from './movieinfos/movieinfos.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { MovieinfosComponent } from './movieinfos/movieinfos.component';
     MovieItemComponent,
     MoviedetailComponent,
     MovieinfosComponent,
+    UpdateRoleComponent,
   ],
   imports: [
     BrowserModule,

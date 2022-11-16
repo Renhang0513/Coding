@@ -1,0 +1,15 @@
+.big-div{
+    display: flex;
+}
+.text-area{
+    width: 45%;
+}
+.note{
+    width: 45%;
+}
+input{
+    width: 100%;
+}
+textarea{
+    width: 100%;
+}

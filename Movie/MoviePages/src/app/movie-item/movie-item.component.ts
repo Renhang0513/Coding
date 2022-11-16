@@ -17,7 +17,9 @@ export class MovieItemComponent implements OnInit, OnDestroy {
 
   moviesDisplay:any=[];
 
+  isUserRole:any;
   constructor(public MovielistService:MovielistService, private matDialog:MatDialog,private router: Router) { }
+
 
   ngOnInit(): void {
     this.MovielistService.movieList$.subscribe(res=>{
@@ -27,6 +29,11 @@ export class MovieItemComponent implements OnInit, OnDestroy {
   setTimeout(() => {
     window.scrollTo(0,this.MovielistService.scrollPosition)
   }, 100);
+
+  this.MovielistService.isUser$.subscribe(res=>{
+    this.isUserRole=res[0];
+  })
+
   }
 
 //----infin scroll
@@ -63,8 +70,13 @@ this.matDialog.open(MoviedetailComponent,{
 
 //--go to movieinfo page
 goToLoginPage(login:any){
-  let movieInfoAddress='/movieinfos/'+login.target.id
-  this.router.navigate([`${movieInfoAddress}`]);
+  if(this.isUserRole){
+    let email='/updateRole/'+this.MovielistService.loggedInUserEmail;
+    this.router.navigate([`${email}`]);
+  }else{
+    let movieInfoAddress='/movieinfos/'+login.target.id
+    this.router.navigate([`${movieInfoAddress}`]);
+  }
 }
 
 ngOnDestroy(): void {

@@ -1,0 +1,18 @@
+<div class="big-div">
+    <div class="note">note
+        <button (click)="addNote()">+</button>
+        <ul *ngFor="let note of formRes">
+            <li (click)="postData($event)" id="{{note.id}}">{{note.name}}</li>
+            <button value="{{note.id}}" (click)="deleteBtn($event)">X</button>
+        </ul>
+    </div>
+    <div class="text-area">
+        <form [formGroup]="myForm">
+            <input formControlName="name" [(ngModel)]="inputName" (keyup)="keyUpFn()">
+            <textarea formControlName="message" [(ngModel)]="inputTextarea" (keyup)="keyUpFn()"></textarea>
+            <button (click)="Revert()" [disabled]="inputChanged">Revert</button>
+            <button (click)="consoleRes()">Save</button>
+        </form>
+
+    </div>
+</div>

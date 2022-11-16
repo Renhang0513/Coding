@@ -10,6 +10,11 @@ export class MovielistService {
 isLogin=[false];
 islogin$=of(this.isLogin)
 
+isUser=[false];
+isUser$=of(this.isUser)
+
+loggedInUserEmail='';
+
 scrollPosition:any;
 
   constructor(private httpClient:HttpClient) {

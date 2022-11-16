@@ -64,8 +64,9 @@ export class RegisterComponent implements OnInit {
       }
     });
     if (qualify) {
+      console.log('this is qualify')
+      this.router.navigate([`${'login/login'}`]);
       this.useraccountService.createdAccount.push(...[this.myForm.value]);
-      this.router.navigate([`${'movieItem/movieItem'}`]);
     }
   }
   emailHintMSGReset() {

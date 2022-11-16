@@ -28,9 +28,9 @@
         
             <mat-form-field class="mat-full-width">
                 <mat-select placeholder="Select your role" formControlName="role">
-                    <mat-option value="User">User</mat-option>
-                    <mat-option value="Admin">Admin</mat-option>
-                    <mat-option value="Super">Super</mat-option>
+                    <mat-option value="user">User</mat-option>
+                    <mat-option value="admin">Admin</mat-option>
+                    <mat-option value="super">Super</mat-option>
                 </mat-select>
                 <mat-error *ngIf="role.invalid && role.touched">
                     Your Must select your role.
