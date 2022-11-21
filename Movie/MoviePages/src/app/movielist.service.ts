@@ -13,7 +13,11 @@ islogin$=of(this.isLogin)
 isUser=[false];
 isUser$=of(this.isUser)
 
-loggedInUserEmail='';
+
+
+
+loggedInUserInfo:any;
+
 
 scrollPosition:any;
 

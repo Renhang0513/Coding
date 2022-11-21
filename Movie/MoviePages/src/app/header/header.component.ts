@@ -25,12 +25,13 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.MovielistService.isLogin[0]=false;
     this.MovielistService.isUser[0]=false;
+    this.MovielistService.loggedInUserInfo={}
+    // localStorage.clear();
     this.router.navigate(['homepage']);
   }
 
   roleTest(){
     console.log(this.MovielistService.isUser)
-    console.log(this.MovielistService.loggedInUserEmail)
     console.log(this.useraccountservice.createdAccount)
   }
 

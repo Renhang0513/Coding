@@ -17,6 +17,7 @@ export class UserGuard implements CanActivate {
     state: RouterStateSnapshot): any {
 
       let islogin:any;
+      
       this.movielistservice.islogin$.subscribe(res=>{
         islogin=res[0]
       })

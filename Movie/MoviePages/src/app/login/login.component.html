@@ -3,17 +3,13 @@
         <form [formGroup]="myForm" class="mat-form">
             <h1>Sign in</h1>
             <mat-form-field class="mat-full-width">
-                <input matInput placeholder="email" formControlName="email">
-                <mat-error *ngIf="email.invalid && email.touched">
-                    <p class="matErrorMSG">Please enter valid Email.</p>
-                </mat-error>
+                <input matInput placeholder="email" formControlName="email" (blur)="emailCheck()">
+                <mat-hint *ngIf="emailNotFound">Email not Found</mat-hint>
             </mat-form-field>
         
             <mat-form-field class="mat-full-width">
-                <input type="password" matInput placeholder="password" formControlName="password">
-                <mat-error *ngIf="password.invalid && password.touched">
-                    <p class="matErrorMSG">Wrong password,please try again.</p>
-                </mat-error>
+                <input type="password" matInput placeholder="password" formControlName="password" (click)="passwordHintReset()">
+                <mat-hint *ngIf="wrongPassword">Wrong Password</mat-hint>
             </mat-form-field>
         
             <p>New to Potato Movies? <a class="signup" (click)="goToRegisterPage()"> Sign up now.</a></p>

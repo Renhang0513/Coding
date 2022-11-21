@@ -1,55 +1,106 @@
 <div class="login-big-div">
-    <div class="login">
-        <h1>Register</h1>
-        <form [formGroup]="myForm" class="mat-form">
-            <mat-form-field class="mat-full-width">
-                <input matInput placeholder="email" formControlName="email" (click)="emailHintMSGReset()">
-                <mat-error *ngIf="email.invalid && email.touched">
-                    Please Enter valid email
-                </mat-error>
-            </mat-form-field>
-            <mat-hint *ngIf="emailHint" align="end">
-                <p class="hintMSG">{{emailHintMSG}}</p>
-            </mat-hint>
-            <mat-form-field class="mat-full-width">
-                <input type="password" matInput placeholder="password" formControlName="password">
-                <mat-hint align="end">Must have one letter</mat-hint>
-                <mat-error *ngIf="password.invalid && password.touched">
-                    Please Enter valid password
-                </mat-error>
-            </mat-form-field>
-        
-            <mat-form-field class="mat-full-width">
-                <input type="password" matInput placeholder="confirmPassword" formControlName="confirmPassword" (click)="confirmPWMSGReset()">
-                <mat-hint *ngIf="confirmPWHint" align="end">
-                    <p class="hintMSG">Password does not match</p>
-                </mat-hint>
-            </mat-form-field>
-        
-            <mat-form-field class="mat-full-width">
-                <mat-select placeholder="Select your role" formControlName="role">
-                    <mat-option value="user">User</mat-option>
-                    <mat-option value="admin">Admin</mat-option>
-                    <mat-option value="super">Super</mat-option>
-                </mat-select>
-                <mat-error *ngIf="role.invalid && role.touched">
-                    Your Must select your role.
-                </mat-error>
-            </mat-form-field>
-            <p>Already registered? <a class="signup" (click)="goToSignInPage()"> Sign in now.</a></p>
+  <div class="login">
+    <h1>Register</h1>
+    <form [formGroup]="myForm" class="mat-form">
+      <mat-form-field class="mat-full-width">
+        <input
+          type="text"
+          matInput
+          placeholder="username"
+          formControlName="username"
+        />
+        <mat-error *ngIf="username.invalid">
+          Username length must between 4-10
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="mat-full-width">
+        <input
+          matInput
+          placeholder="email"
+          formControlName="email"
+          (click)="emailHintMSGReset()"
+          (blur)="emailExistCheck()"
+        />
+        <mat-hint *ngIf="foundEmail">This Email is already registered</mat-hint>
+        <mat-error *ngIf="email.invalid && email.touched">
+          Please Enter valid Email
+        </mat-error>
+      </mat-form-field>
+      <mat-hint *ngIf="emailHint" align="end">
+        <p class="hintMSG">{{ emailHintMSG }}</p>
+      </mat-hint>
 
-            <button class="mat-button" mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="loginCheck()">Lets
-                go</button>
-            </form>
-    </div>
-    <div class="div-footer">
-        <ul>
-            <span><a href="">FAQ</a></span>
-            <span><a href="">Help Center</a></span>
-            <span><a href="">Terms of Use</a></span>
-            <span><a href="">Careers</a></span>
-            <span><a href="">About Us</a></span>
-        </ul>
+      <mat-form-field class="mat-full-width"> 
+        <input
+          type="text"
+          matInput
+          placeholder="TmdbKey"
+          formControlName="TmdbKey"
+        />
+        <mat-error *ngIf="TmdbKey.invalid">
+          TMDB Key must longer or equal to 15.
+        </mat-error>
+      </mat-form-field>
 
-    </div>
+      <mat-form-field class="mat-full-width">
+        <input
+          type="password"
+          matInput
+          placeholder="password"
+          formControlName="password"
+        />
+        <mat-hint align="end">Must have one letter</mat-hint>
+        <mat-error *ngIf="password.invalid && password.touched">
+          Please Enter valid password
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="mat-full-width">
+        <input
+          type="password"
+          matInput
+          placeholder="confirmPassword"
+          formControlName="confirmPassword"
+          (click)="confirmPWMSGReset()"
+        />
+        <mat-hint *ngIf="confirmPWHint" align="end">
+          <p class="hintMSG">Password does not match</p>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="mat-full-width">
+        <mat-select placeholder="Select your role" formControlName="role">
+          <mat-option value="USER">User</mat-option>
+          <mat-option value="ADMIN">Admin</mat-option>
+          <mat-option value="SUPERUSER">SUPERUSER</mat-option>
+        </mat-select>
+        <mat-error *ngIf="role.invalid && role.touched">
+          Your Must select your role.
+        </mat-error>
+      </mat-form-field>
+      <p>
+        Already registered?
+        <a class="signup" (click)="goToSignInPage()"> Sign in now.</a>
+      </p>
+
+      <button
+        class="mat-button"
+        mat-raised-button
+        [disabled]="myForm.invalid"
+        color="primary"
+        (click)="registerCheck()"
+      >
+        Lets go
+      </button>
+    </form>
+  </div>
+  <div class="div-footer">
+    <ul>
+      <span><a href="">FAQ</a></span>
+      <span><a href="">Help Center</a></span>
+      <span><a href="">Terms of Use</a></span>
+      <span><a href="">Careers</a></span>
+      <span><a href="">About Us</a></span>
+    </ul>
+  </div>
 </div>

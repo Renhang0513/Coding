@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UseraccountService } from '../useraccount.service';
 import { Router } from '@angular/router';
 import { AdminGuard } from '../guard/admin.guard';
+import { AuthService } from '../services/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,13 @@ export class LoginComponent implements OnInit {
     public useraccountService: UseraccountService,
     private router: Router,
     private auth:AdminGuard,
+    private authservice:AuthService
   ) {}
+
+    emailNotFound:any;
+    wrongPassword:any;
+    helper = new JwtHelperService();
+
   myForm: any;
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -38,31 +46,44 @@ export class LoginComponent implements OnInit {
     return this.myForm.get('password');
   }
 
-  loginCheck() {
-    this.useraccountService.createdAccount.forEach((e) => {
-      if (
-        e.email === this.myForm.value.email &&
-        e.password === this.myForm.value.password
-      ) {
-        if(e.role==='user'){
-          this.MovielistService.isUser[0]=true
-          this.MovielistService.isLogin[0] = true;
-          this.router.navigate([`${'movieItem/movieItem'}`]);
-          console.log(e.email)
-          this.MovielistService.loggedInUserEmail=e.email;
-        }
-        else{
-          console.log(e.email)
-          this.MovielistService.isLogin[0] = true;
-          this.router.navigate([`${'movieItem/movieItem'}`]);
-          this.MovielistService.loggedInUserEmail=e.email;
-        }
 
+  loginCheck(){
+    const loginInfo = {
+      email:this.myForm.value.email,
+      password:this.myForm.value.password
+    }
+    this.authservice.signin(loginInfo).subscribe((res1:any)=>{
+      let decodedToken=this.helper.decodeToken(res1.accessToken);
+      decodedToken.role=res1.role;
+      decodedToken.password=this.myForm.value.password;
+      this.MovielistService.loggedInUserInfo=decodedToken;
+      console.log(this.MovielistService.loggedInUserInfo)
+      if(res1.role==='USER'){
+        this.MovielistService.isUser[0]=true;
+      }else{
+        this.MovielistService.isUser[0]=false;
       }
-    });
+      this.MovielistService.isLogin[0]=true;
+      localStorage.setItem('token',res1.accessToken)
+      this.router.navigate([`${'movieItem/movieItem/'}`])
+    },error=>{
+      this.wrongPassword=true;      
+    })
   }
 
   goToRegisterPage() {
     this.router.navigate([`${'register/register'}`]);
+  }
+
+  emailCheck(){
+    const emailInfo={
+      email:this.myForm.value.email
+    }
+    this.authservice.checkEmail(emailInfo).subscribe(res=>{
+      this.emailNotFound=!res
+    })
+  }
+  passwordHintReset(){
+    this.wrongPassword=false;
   }
 }

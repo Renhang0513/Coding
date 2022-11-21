@@ -2,55 +2,60 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { MovielistService } from '../movielist.service';
-import { UseraccountService } from '../useraccount.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-update-role',
   templateUrl: './update-role.component.html',
-  styleUrls: ['./update-role.component.css']
+  styleUrls: ['./update-role.component.css'],
 })
 export class UpdateRoleComponent implements OnInit {
-
-  userEmail='';
-
-  constructor(private activatedRoute:ActivatedRoute,private movielistservice:MovielistService,private useraccountservice:UseraccountService,private router:Router) {
-    this.activatedRoute.params.pipe(
-      map((d:any)=>{
-        return d.id
-      })
-    ).subscribe(res=>{
-      this.userEmail=res
-    })
-   }
+  userEmail = '';
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private movielistservice: MovielistService,
+    private router: Router,
+    private auth: AuthService
+  ) {
+    this.activatedRoute.params
+      .pipe(
+        map((d: any) => {
+          return d.id;
+        })
+      )
+      .subscribe((res) => {
+        this.userEmail = res;
+      });
+  }
 
   ngOnInit(): void {
-
-  }
-
-
-changeRoleToAdmin(){
-this.useraccountservice.createdAccount.forEach(e=>{
-  if(e.email===this.userEmail){
-    e.role='admin'
-    this.movielistservice.isUser[0]=false;
-    this.router.navigate([`${'movieItem/movieItem'}`]);
-  }
-})
-
-}
-
-changeRoleToSuper(){
-  this.useraccountservice.createdAccount.forEach(e=>{
-    if(e.email===this.userEmail){
-      e.role='super'
-      this.movielistservice.isUser[0]=false;
-      this.router.navigate([`${'movieItem/movieItem'}`]);
+    if (!this.movielistservice.isLogin[0]&&this.movielistservice.isUser[0]) {
+      this.router.navigate([`${'login/login'}`]);
     }
-  })
-  }
-  dontChange(){
-    this.router.navigate([`${'movieItem/movieItem'}`]);
   }
 
+  //---
+
+  updateRole(updateRole: any) {
+    const updateUserInfo = this.movielistservice.loggedInUserInfo;
+    updateUserInfo.role = updateRole.target.value;
+    delete updateUserInfo.exp;
+    delete updateUserInfo.iat;
+    delete updateUserInfo.id;
+    console.log(updateUserInfo);
+    this.auth.updateUserRole(updateUserInfo).subscribe(
+      (res1: any) => {
+        this.movielistservice.isUser[0] = false;
+        alert('We changed your role to ' + updateRole.target.value);
+        this.router.navigate([`${'movieItem/movieItem/'}`]);
+      },
+      (error) => {
+        alert('Please Login first!');
+      }
+    );
+  }
+  dontChange() {
+    this.router.navigate([`${'movieItem/movieItem'}`]);
+  }
 }

@@ -10,31 +10,25 @@ import { MovielistService } from '../movielist.service';
 
 
 export class AdminGuard implements CanActivate {
-
+     
+   isUser:any;
   constructor(private movielistservice:MovielistService){
-
+    this.movielistservice.isUser$.subscribe(res=>{
+      this.isUser=res[0];
+    })
   }
-
   canActivate(
-  
+
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): any {
 
-      let islogin:any;
-      let isUserGuard:any;
-      this.movielistservice.islogin$.subscribe(res=>{
-        islogin=res[0]
-      })
-      this.movielistservice.isUser$.subscribe(res1=>{
-        isUserGuard=res1[0];
-      })
 
-
-      if(!isUserGuard){
-        return true;
-      }else{
+      if(this.isUser){
         return false;
+      }else{
+        return true;
       }
+ 
 
       
   }

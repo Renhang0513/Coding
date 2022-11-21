@@ -3,6 +3,7 @@ import { MovielistService } from '../movielist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UseraccountService } from '../useraccount.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,13 +21,21 @@ export class RegisterComponent implements OnInit {
     public MovielistService: MovielistService,
     private fb: FormBuilder,
     public useraccountService: UseraccountService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
   myForm: any;
-
+  foundEmail: any;
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10),
+        ],
+      ],
       password: [
         '',
         [
@@ -34,41 +43,68 @@ export class RegisterComponent implements OnInit {
           Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         ],
       ],
-      confirmPassword: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       role: ['', [Validators.required]],
+      TmdbKey: ['', [Validators.required, Validators.minLength(15)]],
+
+      confirmPassword: ['', [Validators.required]],
     });
   }
-  get email() {
-    return this.myForm.get('email');
+
+  get username() {
+    return this.myForm.get('username');
   }
   get password() {
     return this.myForm.get('password');
   }
-  get confirmPassword() {
-    return this.myForm.get('confirmPassword');
+  get email() {
+    return this.myForm.get('email');
   }
   get role() {
     return this.myForm.get('role');
   }
+  get TmdbKey() {
+    return this.myForm.get('TmdbKey');
+  }
+  get confirmPassword() {
+    return this.myForm.get('confirmPassword');
+  }
 
-  loginCheck() {
+  registerCheck() {
     let qualify = true;
     if (this.myForm.value.password !== this.myForm.value.confirmPassword) {
       this.confirmPWHint = true;
       qualify = false;
-    }
-    this.useraccountService.createdAccount.forEach((e) => {
-      if (e.email == this.myForm.value.email) {
-        this.emailHint = true;
-        qualify = false;
-      }
-    });
-    if (qualify) {
-      console.log('this is qualify')
-      this.router.navigate([`${'login/login'}`]);
-      this.useraccountService.createdAccount.push(...[this.myForm.value]);
+    } else {
+      const registerInfo = {
+        username: this.myForm.value.username,
+        password: this.myForm.value.password,
+        email: this.myForm.value.email,
+        role: this.myForm.value.role,
+        tmdb_key: this.myForm.value.TmdbKey,
+      };
+      this.auth.signUp(registerInfo).subscribe(
+        (res) => {
+          console.log(res)
+          this.router.navigate([`${'login/login'}`]);
+        },
+        (error) => {
+          alert('Please enter valid info');
+        }
+      );
     }
   }
+
+  emailExistCheck() {
+    const emailInfo = {
+      email: this.myForm.value.email,
+    };
+    this.auth.checkEmail(emailInfo).subscribe((res: any) => {
+      console.log(res);
+      this.foundEmail = res;
+    });
+  }
+
   emailHintMSGReset() {
     this.emailHint = false;
   }

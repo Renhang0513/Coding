@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MovieItemComponent } from './movie-item/movie-item.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MovieinfosComponent } from './movieinfos/movieinfos.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { VertifytokenInterceptor } from './services/vertifytoken.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,7 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     MatDialogModule,
     YouTubePlayerModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:VertifytokenInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
