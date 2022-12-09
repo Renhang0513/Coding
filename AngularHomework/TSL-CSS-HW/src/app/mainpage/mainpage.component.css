@@ -1,0 +1,28 @@
+*{
+    border: none;
+    padding: none;
+}
+section{
+    width: 50%;
+}
+.left-section{
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.main-div{
+    display: flex;
+    
+}
+.infoblock{
+    border-top:1px solid black;
+}
+button{
+   float:right;
+   font-size: 20px;
+   border:none;
+   color: rgb(253, 253, 255);
+   background-color: rgb(98, 98, 180);
+   padding: 20px 50px 20px 50px;
+   border-radius: 5px;
+}

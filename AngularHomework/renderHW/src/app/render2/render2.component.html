@@ -1,0 +1,37 @@
+
+<ul *ngFor="let item of menus">
+    <li>{{item.child}}</li>
+</ul>
+
+
+
+<!-- <ul>
+<ng-template #renderme let-menus>
+    <li *ngFor="let item of menus">
+        {{item.name}}
+        <ul *ngIf="item.child.length">
+            <ng-container *ngTemplateOutlet="renderme ; context:{ $implicit: menus }"></ng-container>
+        </ul>
+    </li>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="renderme ; context:{ $implicit: menus }">
+    <p>overrided</p>
+</ng-container>
+</ul> -->
+
+
+<!-- <h1>Angular 2 Recursive List</h1>
+<ul>
+  <ng-template #recursiveList let-list>
+    <li *ngFor="let item of list">
+      {{item.title}}
+      <ul *ngIf="item.children.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: list }"></ng-container>
+</ul> -->
+
+

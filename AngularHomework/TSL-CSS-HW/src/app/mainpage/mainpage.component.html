@@ -1,0 +1,15 @@
+
+<div class="main-div">
+    <section class="left-section">
+        <h1>List</h1>
+        <div *ngFor="let item of listInfo" [ngStyle]="{'border-left': item.color===selectedColor ? '15px solid '+ item.color : '10px solid '+ item.color}" class="infoblock" (click)="selectedInfo(item.name)">
+            <h1>{{item.name}}</h1> 
+            <p>{{item.description | limitedlenght}}</p>            
+        </div>
+    </section>
+    <section *ngFor="let one of displayInfo">
+        <h1>{{one.name}}</h1>
+        <p>{{one.description}}</p>
+        <button>Save</button>
+    </section>
+</div>
