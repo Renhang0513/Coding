@@ -1,24 +1,33 @@
-<div class="background-div" [style.background-image]="'url('+baseimgUrl+')'">
-<div class="main-div">
-<div class="left-div">
-    <span class="vote">{{selectedDetail.vote_average}}</span>
-    <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/{{selectedDetail.poster_path
-    }}" alt="">
-    <button id="{{selectedDetail.id}}" (click)="onOpenDialogClick($event)">Watch Trailer</button>
-</div>
-<div class="right-div">
-
-<h1 class="movieName">{{selectedDetail.title}}</h1>
-<p class="date">({{selectedDetail.release_date | date}}) {{selectedDetail.original_language}}
-</p>
-<ul *ngFor="let genre of selectedDetail.genres">
-    <li>{{genre.name}}</li>
-</ul>
-<br>
-<br>
-<h1>overview</h1>
-<p>{{selectedDetail.overview}}</p>
-
-</div>
-</div>
+<div
+  class="background-div"
+  [style.background-image]="'url(' + baseimgUrl + ')'"
+>
+  <div class="main-div">
+    <div class="left-div">
+      <span class="vote">{{ selectedDetail.vote_average }}</span>
+      <img
+        src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/{{
+          selectedDetail.poster_path
+        }}"
+        alt=""
+      />
+      <button id="{{ selectedDetail.id }}" (click)="onOpenDialogClick($event)">
+        Watch Trailer
+      </button>
+    </div>
+    <div class="right-div">
+      <h1 class="movieName">{{ selectedDetail.title }}</h1>
+      <p class="date">
+        ({{ selectedDetail.release_date | date }})
+        {{ selectedDetail.original_language }}
+      </p>
+      <ul *ngFor="let genre of selectedDetail.genres">
+        <li>{{ genre.name }}</li>
+      </ul>
+      <br />
+      <br />
+      <h1>overview</h1>
+      <p>{{ selectedDetail.overview }}</p>
+    </div>
+  </div>
 </div>

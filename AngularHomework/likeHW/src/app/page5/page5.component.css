@@ -1,0 +1,25 @@
+.container{
+    width: 100%;
+    display: inline-block;
+    background-color: rgb(223, 190, 190);
+}
+
+
+h1{
+    font-size: 30px;
+}
+
+button{
+    background-color: rgb(193, 250, 108);
+    width: 300px;
+    height: 80px;
+}
+span{
+    font-size: 80px;
+}
+button:active{
+    background-color:rgb(89, 95, 153) ;
+}
+button:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,14 @@
+div{
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(49, 45, 45);
+    color: white;
+}
+h1{
+    font-size: 100px;
+}
+p{
+    font-size: 40px;
+    width: 90%;
+}

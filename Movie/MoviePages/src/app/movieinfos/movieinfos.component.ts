@@ -15,6 +15,7 @@ export class MovieinfosComponent implements OnInit {
 currentID:any;
 selectedDetail:any;
 baseimgUrl='https://www.themoviedb.org/t/p/w300_and_h450_bestv2/';
+
   constructor(private activatedRoute:ActivatedRoute, private movielistService:MovielistService,private matDialog:MatDialog) {
 
 

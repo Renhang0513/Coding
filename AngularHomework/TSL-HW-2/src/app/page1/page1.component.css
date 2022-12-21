@@ -1,0 +1,32 @@
+*{
+    background-color: white;
+}
+.section{
+    border:1px solid black;
+}
+.big-div{
+    display: flex;
+    flex-direction: column;
+}
+div{
+    background-color: rgb(182, 182, 182);
+    width: 90%;
+    margin: 0 auto;
+}
+.top-div{
+    height: 300px;
+    text-align: center;
+}
+.small-div{
+    width: 90%;
+    height: 60px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid black;
+}
+input{
+    height: 50px;
+    font-size: 40px;
+}
+
+

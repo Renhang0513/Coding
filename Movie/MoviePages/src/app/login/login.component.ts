@@ -13,6 +13,17 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  emailNotFound:any;
+  wrongPassword:any;
+  helper = new JwtHelperService();
+  myForm: any;
+  get email() {
+    return this.myForm.get('email');
+  }
+  get password() {
+    return this.myForm.get('password');
+  }
+
   constructor(
     public MovielistService: MovielistService,
     private fb: FormBuilder,
@@ -22,11 +33,6 @@ export class LoginComponent implements OnInit {
     private authservice:AuthService
   ) {}
 
-    emailNotFound:any;
-    wrongPassword:any;
-    helper = new JwtHelperService();
-
-  myForm: any;
   ngOnInit(): void {
     this.myForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,12 +45,7 @@ export class LoginComponent implements OnInit {
       ],
     });
   }
-  get email() {
-    return this.myForm.get('email');
-  }
-  get password() {
-    return this.myForm.get('password');
-  }
+
 
 
   loginCheck(){

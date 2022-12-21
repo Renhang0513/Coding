@@ -1,0 +1,27 @@
+<button (click)="changeDetection()">Unrelated Button</button>
+
+<h1>
+    Each API call only returns one photo, in this case, we want this page to render 20 random photos. Therefore we need to call the API 20 times.
+</h1>
+
+<h1 *ngIf="this.imgList.length===20 && clicked">Searching complected</h1>
+<h1 *ngIf="this.imgList.length < 19 && clicked">Searching....</h1>
+<div class="big-div">
+
+    <div class="inside-div">
+        <h1>{{pipe | custom}} triggering change detection will reduce the performance of the website.
+        </h1>
+        <button class="red" (click)="callApi()">Call api within Angular Zone</button>
+    </div>
+    <div class="inside-div">
+        <h1>Calling HttpClient in the outside Angular Zone will not Trigger the change detection</h1>
+        <button (click)="callApiWithOutSideZone()">Call api OutSide Angular Zone</button>
+    </div>
+
+</div>
+
+<div class="flex-div">
+<div *ngFor="let item of imgList" class="small-div">
+    <img src="{{item}}" alt="">
+</div>
+</div>

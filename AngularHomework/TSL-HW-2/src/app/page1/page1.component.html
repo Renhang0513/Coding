@@ -1,0 +1,20 @@
+<div  class="big-div">
+<div class="top-div">
+    <h1>Selected Book</h1>
+<div *ngFor="let selected of displaySelected">
+    <h1>{{selected.title}}</h1>
+    <li *ngFor="let author of selected.authors">
+        Author:{{author.name}}
+    </li>
+</div>
+</div>
+    <input type="text" placeholder="Search Input" #keyword (keyup)="searchBook(keyword.value)">
+<div class="small-div" *ngFor="let book of searchResult" class="section" (click)="selectedInfo(book)" [ngStyle]="{'border': book.title===selectedTitle ? '2px solid red' : 'none'}">
+    <ul >
+        <h1>{{book.title}} <span *ngIf="book.title===selectedTitle">(Selected)</span></h1>
+        <li *ngFor="let author of book.authors">
+            Author:{{author.name}}
+        </li>
+    </ul>
+</div>
+</div>
